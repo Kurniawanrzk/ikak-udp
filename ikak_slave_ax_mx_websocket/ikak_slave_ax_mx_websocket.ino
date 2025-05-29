@@ -34,6 +34,7 @@ struct Config {
   float bodyRotY = 0;
   float bodyRotZ = 0;
   uint16_t updateFrequency = 5; // Default to 25Hz (40ms interval)
+  float headvalue = 0;
 } config;
 
 // Timing variables
@@ -58,6 +59,7 @@ void setup() {
   applyConfig();
     // pinMode(2,OUTPUT);
   Serial.println("Hexapod controller initialized");
+  ikak.move(100, 0);
 }
 
 void applyConfig() {
@@ -194,7 +196,11 @@ void processCommand(String cmd) {
       } else if(key == "liftheight") {
         config.liftHeight = val.toInt();
         ikak.initializeLegs(config.initX, config.initY, config.initZ, config.liftHeight);
+      } else if(key == "headvalue"){
+        config.headvalue = val.toInt();
+        ikak.move(100, config.headvalue);
       }
+
       else if (key == "frequency") {
         uint16_t newFreq = val.toInt();
         // Limit frequency to reasonable values (1-100 Hz)
