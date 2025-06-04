@@ -16,6 +16,7 @@
 #include "ServoController.h"
 #include "CameraComm.h"
 #include "HexapodComm.h"
+#include "RPC.h"
 
 // System components
 ToFSensor tofSensor;
@@ -56,6 +57,9 @@ void setup() {
     
     Serial.println("=== System Ready ===");
     Serial.println("Waiting for camera data...\n");
+    RPC.begin();
+    delay(100);
+    RPC.bind("kirim_ke_slave_dari_m7", sendCommandUDP);
 }
 
 void loop() {

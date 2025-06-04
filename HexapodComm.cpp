@@ -49,22 +49,24 @@ void HexapodComm::sendCommand(int speedX, int speedY, int speedR) {
     cmd.gait = 1;
     cmd.frequency = 10;
     
-    sendCommand(cmd);
+    sendCommandUDP(cmd);
 }
 
-void HexapodComm::sendCommand(const HexapodCommand& cmd) {
+
+//ini
+void HexapodComm::sendCommandUDP(const HexapodCommand& cmd) {
     if (!isConnected) return;
     
     String command = buildCommand(cmd);
     
     udp.beginPacket(remoteIP, REMOTE_PORT);
-    udp.print(command);
+    udp.print( );
     udp.endPacket();
     
     Serial.println("Sent to Hexapod: " + command);
 }
 
-void HexapodComm::sendStop() {
+void HexapodComm::send  Stop() {
     sendCommand(0, 0, 0);
 }
 

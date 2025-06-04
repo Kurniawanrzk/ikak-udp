@@ -30,7 +30,7 @@ public:
     HexapodComm();
     bool init();
     void sendCommand(int speedX, int speedY, int speedR);
-    void sendCommand(const HexapodCommand& cmd);
+    void sendCommandUDP(const HexapodCommand& cmd);
     void sendStop();
     bool isWiFiConnected() const;
     void printStatus() const;

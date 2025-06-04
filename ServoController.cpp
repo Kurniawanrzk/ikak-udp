@@ -1,4 +1,5 @@
 #include "ServoController.h"
+#include <Arduino.h>
 
 ServoController::ServoController() : 
     currentPosition(CENTER_SERVO),
